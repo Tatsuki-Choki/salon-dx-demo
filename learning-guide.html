@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習ガイド - Salon DX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #FAFAF8;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1A1A1A;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1A1A1A;
+            text-align: center;
+            margin-bottom: 16px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 48px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #FFFFFF;
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .permission-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .permission-card {
+            background: #FFFFFF;
+            border: 2px solid #E8E8E6;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .permission-card:hover {
+            border-color: #1A1A1A;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        }
+
+        .permission-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .permission-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1A1A1A;
+        }
+
+        .permission-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .ai-section {
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 48px;
+            margin-bottom: 48px;
+        }
+
+        .ai-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .ai-section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .process-step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .benefits-section {
+            background: #FFFFFF;
+            border: 1px solid #E8E8E6;
+            padding: 48px;
+            margin-bottom: 48px;
+        }
+
+        .benefits-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1A1A1A;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1A1A1A;
+        }
+
+        .benefit-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #FFFFFF;
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #FFFFFF;
+            color: #1A1A1A;
+            padding: 16px 32px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+        }
+
+        .cta-button.secondary:hover {
+            background: #FFFFFF;
+            color: #1A1A1A;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 32px;
+            color: #1A1A1A;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 12px 24px;
+            border: 2px solid #1A1A1A;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        /* フッタースタイル */
+        .footer {
+            margin-top: 60px;
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 24px 20px 16px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 16px;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #FFFFFF;
+            opacity: 0.9;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 11px;
+            opacity: 0.5;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 768px) {
+            .permission-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-section {
+                padding: 32px 24px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .ai-section {
+                padding: 32px 24px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .footer-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .footer-links {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .permission-card {
+                padding: 24px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+            }
+
+            .footer-link {
+                font-size: 12px;
+            }
+
+            .footer-title {
+                font-size: 12px;
+            }
+
+            .footer-links {
+                gap: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 録音・撮影OK！</h1>
+        <p class="subtitle">
+            従来の勉強会とは一線を画す、<br>
+            AI時代の新しい学習スタイル
+        </p>
+
+        <div class="permission-cards">
+            <div class="permission-card">
+                <span class="permission-icon">📷</span>
+                <h3 class="permission-title">撮影自由</h3>
+                <p class="permission-text">
+                    スライドや資料の写真撮影は自由です。大事なポイントを逃さず記録してください
+                </p>
+            </div>
+            <div class="permission-card">
+                <span class="permission-icon">🎙️</span>
+                <h3 class="permission-title">録音推奨</h3>
+                <p class="permission-text">
+                    説明やデモの音声録音もOK。後から何度も聞き直して理解を深められます
+                </p>
+            </div>
+            <div class="permission-card">
+                <span class="permission-icon">🤖</span>
+                <h3 class="permission-title">AIと一緒に学ぶ</h3>
+                <p class="permission-text">
+                    撮影した写真をChatGPTやGeminiに投げるだけで、理解を深めることができます
+                </p>
+            </div>
+        </div>
+
+        <div class="ai-section">
+            <h2 class="ai-section-title">AI時代の新しい学習法</h2>
+            <p class="ai-section-subtitle">
+                スマホの写真と音声でAIがパーソナル家庭教師に
+            </p>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">写真を撮る</h3>
+                    <p class="step-description">
+                        重要な内容や理解できない部分の写真を撮影しておくだけでOK
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">AIに聞く</h3>
+                    <p class="step-description">
+                        撮影した写真をChatGPTやGeminiに送り「わかりやすく教えて」と質問
+                    </p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">深く理解する</h3>
+                    <p class="step-description">
+                        AIがあなたの理解度に合わせて詳しく説明、24時間いつでも質問可能
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2 class="benefits-title">このような学習が可能になります</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔄</span>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">何度でも復習</h3>
+                        <p class="benefit-text">
+                            撮影した資料と録音を使って、自分のペースで何度でも学習内容を振り返ることができます
+                        </p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">💡</span>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">理解度に合わせた説明</h3>
+                        <p class="benefit-text">
+                            AIが難しい部分をあなたの理解度に合わせて、より分かりやすく説明してくれます
+                        </p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">⏰</span>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">24時間サポート</h3>
+                        <p class="benefit-text">
+                            疑問が生じたらいつでもAIに質問可能。営業時間を気にする必要はありません
+                        </p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🎯</span>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">実践的な学習</h3>
+                        <p class="benefit-text">
+                            サロンの実際の業務に即した質問や、具体的な活用方法についてもAIが回答します
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">今すぐ新しい学習スタイルを始めよう</h2>
+            <p class="cta-text">
+                録音・撮影を活用して、AIと一緒に効率的に学習しましょう
+            </p>
+            <div class="cta-buttons">
+                <a href="index.html" class="cta-button">研修動画を見る</a>
+                <a href="https://chat.openai.com" target="_blank" class="cta-button secondary">ChatGPTを開く</a>
+            </div>
+        </div>
+
+        <div class="hero-section" style="margin-bottom: 32px;">
+            <h2 class="hero-title">📸 撮影した写真・動画をシェアしてください！</h2>
+            <p class="hero-text" style="margin-bottom: 24px;">
+                研修の様子や学んだ内容をInstagramに投稿する際は<br>
+                <strong style="font-size: 1.3rem;">@SALON_DX_</strong> をメンションしていただけると嬉しいです！
+            </p>
+            <p class="hero-text">
+                みなさまの学習の様子や成果を拝見できることを楽しみにしています<br>
+                #サロンDX #美容室AI研修 のハッシュタグもぜひご活用ください
+            </p>
+            <div style="margin-top: 32px;">
+                <a href="instagram.html" class="cta-button">Instagramをフォロー</a>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">ホームに戻る</a>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">ホーム</a>
+                    <a href="instagram.html" class="footer-link">Instagram</a>
+                    <a href="profile.html" class="footer-link">講師プロフィール</a>
+                    <a href="learning-guide.html" class="footer-link">学習ガイド</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">AIツール:</h3>
+                <div class="footer-links">
+                    <a href="https://gemini.google.com" target="_blank" class="footer-link">Gemini</a>
+                    <a href="https://chat.openai.com" target="_blank" class="footer-link">ChatGPT</a>
+                    <a href="https://notebooklm.google.com" target="_blank" class="footer-link">NotebookLM</a>
+                    <a href="https://claude.ai" target="_blank" class="footer-link">Claude</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">参考資料:</h3>
+                <div class="footer-links">
+                    <a href="https://claude.ai/public/artifacts/6e9548c5-22c1-40c9-959c-220dc4dbe722" target="_blank" class="footer-link">勘定科目仕分けツール</a>
+                    <a href="https://claude.ai/public/artifacts/8278b438-ad9a-4e38-a7fd-15aa082ebfa" target="_blank" class="footer-link">シフト自動作成ツール</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 SALON DX DEMO - 美容室向けAI研修プログラム</p>
+        </div>
+    </footer>
+</body>
+</html>
