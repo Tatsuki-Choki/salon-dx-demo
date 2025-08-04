@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>講師プロフィール - Salon DX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: #FAFAF8;
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #1A1A1A;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1A1A1A;
+            text-align: center;
+            margin-bottom: 48px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .profile-section {
+            background: #FFFFFF;
+            border: 1px solid #E8E8E6;
+            padding: 48px;
+            margin-bottom: 32px;
+            transition: all 0.2s;
+        }
+
+        .profile-section:hover {
+            border-color: #1A1A1A;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .profile-header {
+            display: flex;
+            gap: 48px;
+            align-items: start;
+            margin-bottom: 48px;
+        }
+
+        .profile-image-container {
+            flex-shrink: 0;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 0;
+            border: 3px solid #1A1A1A;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #1A1A1A;
+            letter-spacing: -0.01em;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 24px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .profile-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #1A1A1A;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge.highlight {
+            background: linear-gradient(90deg, #833AB4, #FD1D1D, #FCB045);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #1A1A1A;
+        }
+
+        .section-content {
+            line-height: 1.8;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .achievement-card {
+            background: #FAFAF8;
+            padding: 24px;
+            border: 1px solid #E8E8E6;
+            transition: all 0.2s;
+        }
+
+        .achievement-card:hover {
+            border-color: #1A1A1A;
+            background: #FFFFFF;
+        }
+
+        .achievement-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+
+        .achievement-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #E8E8E6;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .features-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #1A1A1A;
+            font-weight: 700;
+        }
+
+        .cta-section {
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 48px;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-text {
+            font-size: 16px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #FFFFFF;
+            color: #1A1A1A;
+            padding: 16px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255,255,255,0.2);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 32px;
+            color: #1A1A1A;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 12px 24px;
+            border: 2px solid #1A1A1A;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: #1A1A1A;
+            color: #FFFFFF;
+        }
+
+        /* フッタースタイル */
+        .footer {
+            margin-top: 60px;
+            background: #1A1A1A;
+            color: #FFFFFF;
+            padding: 24px 20px 16px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 16px;
+            padding: 0 20px;
+        }
+
+        .footer-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #FFFFFF;
+            opacity: 0.9;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+
+        .footer-link:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 11px;
+            opacity: 0.5;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                gap: 32px;
+                text-align: center;
+            }
+
+            .profile-image-container {
+                margin: 0 auto;
+            }
+
+            .profile-badges {
+                justify-content: center;
+            }
+
+            .achievements {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-section {
+                padding: 32px 24px;
+            }
+
+            .cta-section {
+                padding: 32px 24px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .footer-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .footer-links {
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .profile-name {
+                font-size: 1.6rem;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-section {
+                padding: 24px 16px;
+            }
+
+            .footer-link {
+                font-size: 12px;
+            }
+
+            .footer-title {
+                font-size: 12px;
+            }
+
+            .footer-links {
+                gap: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>講師プロフィール</h1>
+
+        <div class="profile-section">
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img src="https://page.gensparksite.com/v1/base64_upload/ce1f341faf881770d56d6ba322a677df" 
+                         alt="タツキ（長木 辰樹）" 
+                         class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <h2 class="profile-name">タツキ（長木 辰樹）</h2>
+                    <p class="profile-title">
+                        AI駆動開発エンジニア / Empire Art ディレクター
+                    </p>
+                    <div class="profile-badges">
+                        <span class="badge highlight">SNS総フォロワー2.4万人</span>
+                        <span class="badge">Felo公式アンバサダー</span>
+                        <span class="badge">tl;dv公式アンバサダー</span>
+                    </div>
+                    <p style="font-size: 16px; color: #666; font-weight: 600; font-style: italic;">
+                        「理解しやすさ」と「実践力」を重視した指導で、<br>
+                        あなたのサロンに即効性のある変化をもたらします
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">経歴</h3>
+                <div class="section-content">
+                    <p>2021年にデザインとマーケティング支援を行う合同会社tsukichiyoを設立。生成AIを"デジタル従業員"のように活用することで、一人会社ながらも継続的な売上成長を実現。</p>
+                    <br>
+                    <p>会社員時代には大手通信企業にて社内研修講師として2,000名以上に登壇。その経験を活かした、「誰にでも分かりやすく、すぐに実践できる」伝え方に定評がある。</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">実績</h3>
+                <div class="achievements">
+                    <div class="achievement-card">
+                        <div class="achievement-number">2,000名+</div>
+                        <div class="achievement-label">大手企業での研修登壇実績</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">500名+</div>
+                        <div class="achievement-label">AI活用講座の受講者数</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">2.4万人</div>
+                        <div class="achievement-label">SNS総フォロワー数</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-number">2社</div>
+                        <div class="achievement-label">公式アンバサダー就任</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">専門分野</h3>
+                <ul class="features-list">
+                    <li>生成AIを活用した業務効率化とコンテンツ生成支援</li>
+                    <li>YouTubeチャンネル運用・動画編集の効率化</li>
+                    <li>デザイナー向けAI活用法の指導</li>
+                    <li>現場に根ざした実践的なAI導入支援</li>
+                    <li>クリエイター領域のプロフェッショナル育成</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">講師としての強み</h3>
+                <div class="section-content">
+                    <p>独立後は、YouTubeチャンネル運用者・動画編集者・デザイナーなどクリエイター領域のプロフェッショナルを対象に、生成AIを活用した業務効率化やコンテンツ生成支援の講座を累計500名以上に提供。</p>
+                    <br>
+                    <p>現場に根ざした実践的な内容と、即戦力として機能するノウハウが高く評価され、業界内での信頼を獲得。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">美容室のDX化を一緒に実現しましょう</h2>
+            <p class="cta-text">
+                AIを"デジタル従業員"として活用し、<br>
+                サロン運営の効率化と売上向上を実現します
+            </p>
+            <a href="index.html" class="cta-button">研修動画を見る</a>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">ホームに戻る</a>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">ホーム</a>
+                    <a href="instagram.html" class="footer-link">Instagram</a>
+                    <a href="profile.html" class="footer-link">講師プロフィール</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">AIツール:</h3>
+                <div class="footer-links">
+                    <a href="https://gemini.google.com" target="_blank" class="footer-link">Gemini</a>
+                    <a href="https://chat.openai.com" target="_blank" class="footer-link">ChatGPT</a>
+                    <a href="https://notebooklm.google.com" target="_blank" class="footer-link">NotebookLM</a>
+                    <a href="https://claude.ai" target="_blank" class="footer-link">Claude</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">参考資料:</h3>
+                <div class="footer-links">
+                    <a href="https://claude.ai/public/artifacts/6e9548c5-22c1-40c9-959c-220dc4dbe722" target="_blank" class="footer-link">勘定科目仕分けツール</a>
+                    <a href="https://claude.ai/public/artifacts/8278b438-ad9a-4e38-a7fd-15aa082ebfa" target="_blank" class="footer-link">シフト自動作成ツール</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 SALON DX DEMO - 美容室向けAI研修プログラム</p>
+        </div>
+    </footer>
+</body>
+</html>
