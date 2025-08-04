@@ -546,77 +546,80 @@
 
         /* フッタースタイル */
         .footer {
-            margin-top: 80px;
+            margin-top: 60px;
             background: #1A1A1A;
             color: #FFFFFF;
-            padding: 48px 20px 24px;
+            padding: 24px 20px 16px;
         }
 
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 48px;
-            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 16px;
         }
 
         .footer-section {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            align-items: center;
+            gap: 16px;
         }
 
         .footer-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: #FFFFFF;
             opacity: 0.9;
             margin: 0;
+            white-space: nowrap;
         }
 
         .footer-links {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .footer-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             color: #FFFFFF;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.2s;
             opacity: 0.7;
-            padding: 8px 0;
+            white-space: nowrap;
         }
 
         .footer-link:hover {
             opacity: 1;
-            transform: translateX(4px);
+            transform: translateY(-2px);
         }
 
         .link-icon {
-            font-size: 16px;
+            font-size: 14px;
             display: inline-block;
-            width: 24px;
-            text-align: center;
+            width: auto;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 24px;
+            padding-top: 16px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-bottom p {
             margin: 0;
-            font-size: 12px;
+            font-size: 11px;
             opacity: 0.5;
             font-weight: 500;
             letter-spacing: 0.02em;
@@ -624,23 +627,41 @@
 
         @media (max-width: 768px) {
             .footer-container {
-                grid-template-columns: 1fr;
-                gap: 32px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .footer-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .footer-links {
+                gap: 16px;
             }
 
             .footer {
-                margin-top: 60px;
-                padding: 32px 20px 20px;
+                margin-top: 40px;
+                padding: 20px 20px 16px;
             }
         }
 
         @media (max-width: 480px) {
             .footer-link {
-                font-size: 13px;
+                font-size: 12px;
             }
 
             .footer-title {
-                font-size: 13px;
+                font-size: 12px;
+            }
+
+            .footer-links {
+                gap: 12px;
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -666,37 +687,19 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
-                <h3 class="footer-title">AIツール</h3>
+                <h3 class="footer-title">AIツール:</h3>
                 <div class="footer-links">
-                    <a href="https://gemini.google.com" target="_blank" class="footer-link">
-                        <span class="link-icon">-</span>
-                        Gemini
-                    </a>
-                    <a href="https://chat.openai.com" target="_blank" class="footer-link">
-                        <span class="link-icon">-</span>
-                        ChatGPT
-                    </a>
-                    <a href="https://notebooklm.google.com" target="_blank" class="footer-link">
-                        <span class="link-icon">-</span>
-                        NotebookLM
-                    </a>
-                    <a href="https://claude.ai" target="_blank" class="footer-link">
-                        <span class="link-icon">-</span>
-                        Claude
-                    </a>
+                    <a href="https://gemini.google.com" target="_blank" class="footer-link">Gemini</a>
+                    <a href="https://chat.openai.com" target="_blank" class="footer-link">ChatGPT</a>
+                    <a href="https://notebooklm.google.com" target="_blank" class="footer-link">NotebookLM</a>
+                    <a href="https://claude.ai" target="_blank" class="footer-link">Claude</a>
                 </div>
             </div>
             <div class="footer-section">
-                <h3 class="footer-title">参考資料</h3>
+                <h3 class="footer-title">参考資料:</h3>
                 <div class="footer-links">
-                    <a href="https://claude.ai/public/artifacts/6e9548c5-22c1-40c9-959c-220dc4dbe722" target="_blank" class="footer-link">
-                        <span class="link-icon">-</span>
-                        勘定科目仕分けツール
-                    </a>
-                    <a href="https://claude.ai/public/artifacts/8278b438-ad9a-4e38-a7fd-15aa082ebfa" target="_blank" class="footer-link">
-                        <span class="link-icon">-</span>
-                        シフト自動作成ツール
-                    </a>
+                    <a href="https://claude.ai/public/artifacts/6e9548c5-22c1-40c9-959c-220dc4dbe722" target="_blank" class="footer-link">勘定科目仕分けツール</a>
+                    <a href="https://claude.ai/public/artifacts/8278b438-ad9a-4e38-a7fd-15aa082ebfa" target="_blank" class="footer-link">シフト自動作成ツール</a>
                 </div>
             </div>
         </div>
