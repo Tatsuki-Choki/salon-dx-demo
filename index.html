@@ -1005,7 +1005,7 @@
             if (video.type === 'youtube') {
                 // YouTube動画の場合
                 const iframe = document.createElement('iframe');
-                iframe.src = `https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1&autoplay=1&mute=0`;
+                iframe.src = `https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1&autoplay=1&mute=1`;
                 iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                 iframe.allowFullscreen = true;
                 iframe.style.width = '100%';
@@ -1016,6 +1016,7 @@
                 const videoElement = document.createElement('video');
                 videoElement.controls = true;
                 videoElement.autoplay = true;
+                videoElement.muted = true;
                 
                 const source = document.createElement('source');
                 source.src = video.url;
