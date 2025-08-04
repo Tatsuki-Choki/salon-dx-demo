@@ -357,9 +357,155 @@
                 padding: 10px 12px 8px;
             }
         }
+
+        /* ハンバーガーメニュー */
+        .hamburger-menu {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #1A1A1A;
+            border-radius: 4px;
+            z-index: 10001;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: #FFFFFF;
+            transition: all 0.3s;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 80px 20px 40px;
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav-content {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .mobile-nav-section {
+            margin-bottom: 32px;
+        }
+
+        .mobile-nav-title {
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mobile-nav-link {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .footer {
+                display: none;
+            }
+
+            .container {
+                padding-bottom: 40px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- ハンバーガーメニュー -->
+    <div class="hamburger-menu" onclick="toggleMobileMenu()">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </div>
+
+    <!-- モバイルナビゲーション -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-content">
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">ページ</div>
+                <div class="mobile-nav-links">
+                    <a href="index.html" class="mobile-nav-link">ホーム</a>
+                    <a href="instagram.html" class="mobile-nav-link">Instagram</a>
+                    <a href="profile.html" class="mobile-nav-link">講師プロフィール</a>
+                    <a href="learning-guide.html" class="mobile-nav-link">受講ルール</a>
+                </div>
+            </div>
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">AIツール</div>
+                <div class="mobile-nav-links">
+                    <a href="https://gemini.google.com" target="_blank" class="mobile-nav-link">Gemini</a>
+                    <a href="https://chat.openai.com" target="_blank" class="mobile-nav-link">ChatGPT</a>
+                    <a href="https://notebooklm.google.com" target="_blank" class="mobile-nav-link">NotebookLM</a>
+                    <a href="https://claude.ai" target="_blank" class="mobile-nav-link">Claude</a>
+                </div>
+            </div>
+            <div class="mobile-nav-section">
+                <div class="mobile-nav-title">参考資料</div>
+                <div class="mobile-nav-links">
+                    <a href="https://claude.ai/public/artifacts/6e9548c5-22c1-40c9-959c-220dc4dbe722" target="_blank" class="mobile-nav-link">勘定科目仕分けツール</a>
+                    <a href="https://claude.ai/public/artifacts/208f792b-f30f-4c0d-8dad-351a155dd68b" target="_blank" class="mobile-nav-link">シフト自動作成ツール</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <h1>SALON DX <span class="highlight">INSTAGRAM</span></h1>
         <p class="subtitle">最新の美容室DX情報をお届けします</p>
@@ -432,5 +578,37 @@
             <p>© 2025 SALON DX DEMO - 美容室向けAI研修プログラム</p>
         </div>
     </footer>
+
+    <script>
+        // モバイルメニューのトグル
+        function toggleMobileMenu() {
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            
+            // スクロールを禁止/許可
+            if (mobileNav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // メニュー外をクリックしたときに閉じる
+        document.addEventListener('click', function(e) {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger-menu');
+            
+            if (mobileNav.classList.contains('active') && 
+                !e.target.closest('.mobile-nav-content') && 
+                !e.target.closest('.hamburger-menu')) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
 </body>
 </html>

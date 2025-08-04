@@ -1,0 +1,183 @@
+<!-- \u30cf\u30f3\u30d0\u30fc\u30ac\u30fc\u30e1\u30cb\u30e5\u30fc\u306e\u5171\u901a\u30b3\u30fc\u30c9 -->
+<!-- \u3053\u306e\u30d5\u30a1\u30a4\u30eb\u306f\u53c2\u8003\u7528\u3067\u3001\u5404\u30da\u30fc\u30b8\u306b\u76f4\u63a5\u57cb\u3081\u8fbc\u307f\u307e\u3059 -->
+
+<style>
+    /* \u30cf\u30f3\u30d0\u30fc\u30ac\u30fc\u30e1\u30cb\u30e5\u30fc */
+    .hamburger-menu {
+        display: none;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: #1A1A1A;
+        border-radius: 4px;
+        z-index: 10001;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .hamburger-line {
+        width: 24px;
+        height: 2px;
+        background: #FFFFFF;
+        transition: all 0.3s;
+    }
+
+    .hamburger-menu.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger-menu.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 10000;
+        overflow-y: auto;
+        padding: 80px 20px 40px;
+    }
+
+    .mobile-nav.active {
+        display: block;
+    }
+
+    .mobile-nav-content {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .mobile-nav-section {
+        margin-bottom: 32px;
+    }
+
+    .mobile-nav-title {
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 16px;
+        opacity: 0.6;
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mobile-nav-link {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+
+    .mobile-nav-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .hamburger-menu {
+            display: flex;
+        }
+
+        .footer {
+            display: none;
+        }
+
+        .container {
+            padding-bottom: 40px;
+        }
+    }
+</style>
+
+<!-- HTML -->
+<!-- \u30cf\u30f3\u30d0\u30fc\u30ac\u30fc\u30e1\u30cb\u30e5\u30fc -->
+<div class="hamburger-menu" onclick="toggleMobileMenu()">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+</div>
+
+<!-- \u30e2\u30d0\u30a4\u30eb\u30ca\u30d3\u30b2\u30fc\u30b7\u30e7\u30f3 -->
+<div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-content">
+        <div class="mobile-nav-section">
+            <div class="mobile-nav-title">\u30da\u30fc\u30b8</div>
+            <div class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">\u30db\u30fc\u30e0</a>
+                <a href="instagram.html" class="mobile-nav-link">Instagram</a>
+                <a href="profile.html" class="mobile-nav-link">\u8b1b\u5e2b\u30d7\u30ed\u30d5\u30a3\u30fc\u30eb</a>
+                <a href="learning-guide.html" class="mobile-nav-link">\u53d7\u8b1b\u30eb\u30fc\u30eb</a>
+            </div>
+        </div>
+        <div class="mobile-nav-section">
+            <div class="mobile-nav-title">AI\u30c4\u30fc\u30eb</div>
+            <div class="mobile-nav-links">
+                <a href="https://gemini.google.com" target="_blank" class="mobile-nav-link">Gemini</a>
+                <a href="https://chat.openai.com" target="_blank" class="mobile-nav-link">ChatGPT</a>
+                <a href="https://notebooklm.google.com" target="_blank" class="mobile-nav-link">NotebookLM</a>
+                <a href="https://claude.ai" target="_blank" class="mobile-nav-link">Claude</a>
+            </div>
+        </div>
+        <div class="mobile-nav-section">
+            <div class="mobile-nav-title">\u53c2\u8003\u8cc7\u6599</div>
+            <div class="mobile-nav-links">
+                <a href="https://claude.ai/public/artifacts/6e9548c5-22c1-40c9-959c-220dc4dbe722" target="_blank" class="mobile-nav-link">\u52d8\u5b9a\u79d1\u76ee\u4ed5\u5206\u3051\u30c4\u30fc\u30eb</a>
+                <a href="https://claude.ai/public/artifacts/208f792b-f30f-4c0d-8dad-351a155dd68b" target="_blank" class="mobile-nav-link">\u30b7\u30d5\u30c8\u81ea\u52d5\u4f5c\u6210\u30c4\u30fc\u30eb</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// \u30e2\u30d0\u30a4\u30eb\u30e1\u30cb\u30e5\u30fc\u306e\u30c8\u30b0\u30eb
+function toggleMobileMenu() {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('active');
+    
+    // \u30b9\u30af\u30ed\u30fc\u30eb\u3092\u7981\u6b62/\u8a31\u53ef
+    if (mobileNav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+// \u30e1\u30cb\u30e5\u30fc\u5916\u3092\u30af\u30ea\u30c3\u30af\u3057\u305f\u3068\u304d\u306b\u9589\u3058\u308b
+document.addEventListener('click', function(e) {
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburger = document.querySelector('.hamburger-menu');
+    
+    if (mobileNav.classList.contains('active') && 
+        !e.target.closest('.mobile-nav-content') && 
+        !e.target.closest('.hamburger-menu')) {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+</script>
