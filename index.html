@@ -147,6 +147,24 @@
             color: #FFFFFF !important;
         }
 
+        .btn-secret {
+            width: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(26, 26, 26, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .controls:hover .btn-secret {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(26, 26, 26, 0.3);
+        }
+
+        .btn-secret:hover {
+            background: #E8E8E6 !important;
+            border-color: #1A1A1A !important;
+        }
+
         .video-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -687,7 +705,10 @@
             <textarea id="videoUrls" placeholder="動画URLを入力（複数の場合は改行で区切る）"></textarea>
             <div class="button-group">
                 <button class="btn-primary" onclick="addVideos()">動画を追加</button>
-                <button class="btn-danger" onclick="clearAllVideos()">すべてクリア</button>
+                <div style="display: flex; gap: 4px;">
+                    <button class="btn-secret" onclick="loadDemoVideos()" title="デモ動画を読み込む"></button>
+                    <button class="btn-danger" onclick="clearAllVideos()">すべてクリア</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1074,6 +1095,57 @@
                 }
             }
         });
+
+        // デモ動画を読み込む（隠し機能）
+        function loadDemoVideos() {
+            const demoUrls = [
+                'https://youtu.be/5rqvtUQFB1Q',
+                'https://youtu.be/G1Bj3yMWPEo',
+                'https://youtu.be/9Y7wJJSsOJA',
+                'https://youtu.be/A5bCHu0jAqY',
+                'https://youtu.be/MutHh1vIJQ4',
+                'https://youtu.be/MqSu3rDduIE',
+                'https://youtu.be/QZ0utjKB-2k',
+                'https://youtu.be/k0JqYA-BTew',
+                'https://youtu.be/U5wePJ_KONo'
+            ];
+            
+            // 既存の動画をクリア
+            videos = [];
+            
+            // デモ動画を追加
+            demoUrls.forEach(async (url) => {
+                const youtubeId = extractYouTubeId(url);
+                if (youtubeId) {
+                    try {
+                        const info = await getYouTubeInfo(youtubeId);
+                        videos.push({
+                            url: url,
+                            type: 'youtube',
+                            id: youtubeId,
+                            title: info.title,
+                            channel: info.channel,
+                            duration: info.duration
+                        });
+                    } catch (e) {
+                        videos.push({
+                            url: url,
+                            type: 'youtube',
+                            id: youtubeId,
+                            title: `デモ動画 ${videos.length + 1}`,
+                            channel: 'Salon DX',
+                            duration: '--:--'
+                        });
+                    }
+                    
+                    if (videos.length === demoUrls.length) {
+                        saveVideosToStorage();
+                        renderVideoGrid();
+                        showNotification('デモ動画を読み込みました', 'success');
+                    }
+                }
+            });
+        }
 
         // 通知を表示
         function showNotification(message, type) {
